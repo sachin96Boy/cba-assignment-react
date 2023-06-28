@@ -1,26 +1,41 @@
-import { Box, Button, TextField } from "@mui/material";
-import { LoadingButton } from "@mui/lab"
+import { useState } from "react";
+import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
 import instance from "../../utils/AxiosInstance";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, TextField } from "@mui/material";
 
 interface IinitialValues {
   username: string;
   password: string;
 }
 
-function SigninForm() {
+interface IsigninformProps {
+  setOpen: (val: boolean) => void;
+  setMessage: (val: string) => void;
+}
+
+function SigninForm(props: IsigninformProps) {
   const navigate = useNavigate();
+
   const handleSubmit = (values: IinitialValues, actions: any) => {
-    instance.post("/login", values).then((response) => {
-      if (response.status == 200) {
-        // loged in, now redirect too new page
-        localStorage.setItem("User", response.data["user_data"]);
+    console.log(values);
+    instance
+      .post("/login", values)
+      .then((response) => {
+        if (response.status == 200) {
+          // loged in, now redirect too new page
+          localStorage.setItem("User", response.data["user_data"]);
+          actions.setSubmitting(false);
+          navigate("/dashboard");
+        }
+      })
+      .catch((err: any) => {
+        props.setOpen(true);
+        props.setMessage(err.response.data["res_desc"]);
         actions.setSubmitting(false);
-        navigate("/dashboard");
-      }
-    });
+      });
   };
   const validationSchema = yup.object({
     username: yup.string().required("username is required"),
@@ -69,11 +84,11 @@ function SigninForm() {
         helperText={formik.touched.password && formik.errors.password}
         autoComplete="current-password"
       />
-      (
+
       {formik.isSubmitting ? (
-        <LoadingButton loading variant="outlined">
-        Submit
-      </LoadingButton>
+        <LoadingButton fullWidth loading variant="outlined">
+          Submit
+        </LoadingButton>
       ) : (
         <Button
           type="submit"
@@ -84,7 +99,6 @@ function SigninForm() {
           Sign In
         </Button>
       )}
-      )
     </Box>
   );
 }
