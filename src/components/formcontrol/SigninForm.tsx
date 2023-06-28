@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
 import { useFormik } from "formik";
 import instance from "../../utils/AxiosInstance";
@@ -20,7 +19,6 @@ function SigninForm(props: IsigninformProps) {
   const navigate = useNavigate();
 
   const handleSubmit = (values: IinitialValues, actions: any) => {
-    console.log(values);
     instance
       .post("/login", values)
       .then((response) => {
