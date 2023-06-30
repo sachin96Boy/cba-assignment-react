@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import ResponsiveAppBar from "../components/formcontrol/NavBar";
+import ResponsiveAppBar from "../components/NavBar";
 
 function DashboarScreen() {
   return (
