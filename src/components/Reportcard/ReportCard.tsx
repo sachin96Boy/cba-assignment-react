@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 import QRimage from "../../assets/qr_code.jpg";
 import Visaimage from "../../assets/visa-vector-logo.jpg";
@@ -33,20 +33,40 @@ function ReportCard(props: IreportardProps) {
           overflow: "auto",
         }}
       >
-        {/* <AspectRatio ratio="1" maxHeight={182} sx={{ minWidth: 182, flex: 1 }}> */}
-        <img
-          src={
-            props.paymentMode === "card" && props.cardLabel?.toLowerCase() === "visa"
+        <CardMedia
+          component="img"
+          alt="Payment-type"
+          height="300"
+          image={
+            props.paymentMode === "card" &&
+            props.cardLabel?.toLowerCase() === "visa"
               ? Visaimage
-              : props.paymentMode === "card" && props.cardLabel?.toLowerCase() === "master"
+              : props.paymentMode === "card" &&
+                props.cardLabel?.toLowerCase() === "master"
               ? Masterimage
               : props.paymentMode === "qr"
               ? QRimage
               : Walletimage
           }
-          alt=""
+          sx={{
+            objectFit: "cover",
+          }}
         />
-        {/* </AspectRatio> */}
+        {/* <img
+            src={
+              props.paymentMode === "card" &&
+              props.cardLabel?.toLowerCase() === "visa"
+                ? Visaimage
+                : props.paymentMode === "card" &&
+                  props.cardLabel?.toLowerCase() === "master"
+                ? Masterimage
+                : props.paymentMode === "qr"
+                ? QRimage
+                : Walletimage
+            }
+            alt=""
+          /> */}
+
         <CardContent>
           <Typography fontSize="xl" fontWeight="lg">
             {props.cardLabel}

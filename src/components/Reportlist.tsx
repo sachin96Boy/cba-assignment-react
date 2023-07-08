@@ -15,7 +15,6 @@ function Reportlist() {
       .then((response: AxiosResponse) => {
         if (response.status == 200) {
           setReportList(response.data["transaction"]["transaction_list"]);
-          console.log(reportList);
           setIsloading(false);
         }
       })
