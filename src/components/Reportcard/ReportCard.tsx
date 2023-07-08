@@ -31,6 +31,7 @@ function ReportCard(props: IreportardProps) {
           flexWrap: "wrap",
           // make the card resizable for demo
           overflow: "auto",
+          m: "20px",
         }}
       >
         <CardMedia
@@ -52,31 +53,26 @@ function ReportCard(props: IreportardProps) {
             objectFit: "cover",
           }}
         />
-        {/* <img
-            src={
-              props.paymentMode === "card" &&
-              props.cardLabel?.toLowerCase() === "visa"
-                ? Visaimage
-                : props.paymentMode === "card" &&
-                  props.cardLabel?.toLowerCase() === "master"
-                ? Masterimage
-                : props.paymentMode === "qr"
-                ? QRimage
-                : Walletimage
-            }
-            alt=""
-          /> */}
 
         <CardContent>
-          <Typography fontSize="xl" fontWeight="lg">
-            {props.cardLabel}
-          </Typography>
-          <Typography fontWeight="lg">
-            {props.currency}: {props.amount}
-          </Typography>
           <Box
             sx={{
-              bgcolor: "red",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              mx: "10px",
+            }}
+          >
+            <Typography fontSize="xl" fontWeight="lg" variant="h5">
+              {props.cardLabel?.toUpperCase()}
+            </Typography>
+            <Typography fontWeight="lg" variant="h5">
+              {props.currency}: {props.amount}
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
               p: 1.5,
               my: 1.5,
               display: "flex",
@@ -84,23 +80,64 @@ function ReportCard(props: IreportardProps) {
             }}
           >
             <div>
-              <Typography fontWeight="lg">Invoice No</Typography>
-              <Typography fontWeight="lg">{props.invoiceNo}</Typography>
+              <Typography
+                fontWeight="lg"
+                variant="body2"
+                color="text.secondary"
+              >
+                Invoice No
+              </Typography>
+              <Typography
+                fontWeight="lg"
+                variant="body2"
+                color="text.secondary"
+              >
+                {props.invoiceNo}
+              </Typography>
             </div>
             <div>
-              <Typography fontWeight="lg">Mobile</Typography>
-              <Typography fontWeight="lg">
+              <Typography
+                fontWeight="lg"
+                variant="body2"
+                color="text.secondary"
+              >
+                Mobile
+              </Typography>
+              <Typography
+                fontWeight="lg"
+                variant="body2"
+                color="text.secondary"
+              >
                 {props.customerMobile == null ? "None" : props.customerMobile}
               </Typography>
             </div>
             <div>
-              <Typography fontWeight="lg">Recorded Pan</Typography>
-              <Typography fontWeight="lg">
+              <Typography
+                fontWeight="lg"
+                variant="body2"
+                color="text.secondary"
+              >
+                Recorded Pan
+              </Typography>
+              <Typography
+                fontWeight="lg"
+                variant="body2"
+                color="text.secondary"
+              >
                 {props.pan == null ? "None" : props.pan}
               </Typography>
             </div>
           </Box>
-          <Typography fontWeight="lg">{props.TransDate}</Typography>
+          <Typography
+            sx={{
+              mx: "10px",
+            }}
+            fontWeight="lg"
+            variant="body1"
+            color="text.primary"
+          >
+            {props.TransDate}
+          </Typography>
         </CardContent>
       </Card>
     </Box>

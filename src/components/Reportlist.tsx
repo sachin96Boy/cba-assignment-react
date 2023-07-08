@@ -32,7 +32,15 @@ function Reportlist() {
       ) : isError ? (
         <Box>Something went Wrong</Box>
       ) : (
-        <Stack direction={"column"} spacing={4} divider={<Divider flexItem />}>
+        <Stack
+          direction={"column"}
+          sx={{
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+          spacing={4}
+          divider={<Divider flexItem />}
+        >
           {reportList.map((report: any) => (
             <Box key={report.id}>
               <ReportCard
