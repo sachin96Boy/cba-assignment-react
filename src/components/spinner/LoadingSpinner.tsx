@@ -12,7 +12,7 @@ function LoadingSpinner() {
       }}
     >
       <CircularProgress />
-      <Typography variant="h3">This might take a while, please wait...</Typography>
+      <Typography variant="h5">This might take a while, please wait...</Typography>
     </Box>
   );
 }
