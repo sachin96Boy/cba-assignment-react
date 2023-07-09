@@ -28,7 +28,7 @@ interface ipropsSummery {
 }
 
 function ReportSummery(props: ipropsSummery) {
-  const [isloading, setIsloading] = React.useState(false);
+  const [isloading, setIsloading] = React.useState(true);
   const [isError, setIsError] = React.useState(false);
   const [reportSummery, setReportSummery] = React.useState<iReportSumery>();
 
