@@ -4,6 +4,8 @@ import QRimage from "../../assets/qr_code.jpg";
 import Visaimage from "../../assets/visa-vector-logo.jpg";
 import Masterimage from "../../assets/mastercard-vector.jpg";
 import Walletimage from "../../assets/Wallet with Money in it.jpg";
+import React from "react";
+import ReportSummery from "../ReportSummery";
 
 export interface IreportardProps {
   id: string;
@@ -18,13 +20,30 @@ export interface IreportardProps {
 }
 
 function ReportCard(props: IreportardProps) {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Box
       sx={{
         width: "100%",
         overflow: { xs: "auto", sm: "initial" },
       }}
+      onClick={handleClickOpen}
     >
+      {open && (
+        <ReportSummery
+          open={open}
+          handleClose={handleClose}
+        />
+      )}
       <Card
         sx={{
           width: "100%",
