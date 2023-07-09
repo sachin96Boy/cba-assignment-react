@@ -3,11 +3,15 @@ import instance from "../utils/AxiosInstance";
 import { AxiosResponse } from "axios";
 import { Box, Divider, Stack } from "@mui/material";
 import ReportCard from "./Reportcard/ReportCard";
+import LoadingSpinner from "./spinner/LoadingSpinner";
+import Errorcomponent from "./error/Errorcomponent";
 
 function Reportlist() {
   const [reportList, setReportList] = React.useState([]);
   const [isLoading, setIsloading] = React.useState(true);
   const [isError, setIserror] = React.useState(false);
+
+
 
   React.useEffect(() => {
     instance
@@ -28,9 +32,27 @@ function Reportlist() {
   const showingReports = (
     <>
       {isLoading ? (
-        <Box>loading</Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+          }}
+        >
+          <LoadingSpinner />
+        </Box>
       ) : isError ? (
-        <Box>Something went Wrong</Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+          }}
+        >
+          <Errorcomponent />
+        </Box>
       ) : (
         <Stack
           direction={"column"}
